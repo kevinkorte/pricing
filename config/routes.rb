@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
   #get 'welcome/index'
+  
+  unauthenticated :user do
+    devise_scope :user do
+      root 'devise/sessions#new'
+    end
+  end
+  
+  authenticated :user do
+    root 'welcome#index', as: :authentiated_root
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
