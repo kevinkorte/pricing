@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :worksheets
   devise_for :users
   #get 'welcome/index'
   
