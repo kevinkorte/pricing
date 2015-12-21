@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :worksheets
   devise_for :users
   #get 'welcome/index'
   
@@ -10,7 +9,7 @@ Rails.application.routes.draw do
   end
   
   authenticated :user do
-    root 'welcome#index', as: :authentiated_root
+    root 'welcome#index', as: :authenticated_root
   end
   
   resources :worksheets
