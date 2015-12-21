@@ -1,4 +1,87 @@
 <p id="notice"><%= notice %></p>
 
+<%= simple_form_for(@worksheet) do |f| %>
+<%= f.error_notification %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            
+          <div class="form-group">
+            <%= f.input :client %>
+          </div>
+  
+          <div class="form-group">
+            <%= f.input :plan %>
+          </div>
+  
+          <div class="form-group">
+            <%= f.input :address %>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= f.input :base_price %>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table">
+          <caption>Optional table caption.</caption>
+          <thead>
+            <tr>
+              <th>Remove</th>
+              <th>Item</th>
+              <th>Cost</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="pricing-body">
+            <tr id="base-row">
+              <th scope="row">
+                <div class="checkbox">
+                  <label>
+                  <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                  </label>
+                </div>
+              </th>
+              <td class="col-md-3"><input class="form-control" type="text"></td>
+              <td class="col-md-2"><input class="form-control" type="text"></td>
+              <td class="col-md-7"><input class="form-control input-notes" type="text"></td>
+              </th>
+            </tr>
+            <tr>
+              <td scope="row">
+                <div class="checkbox">
+                  <label>
+                  <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                  </label>
+                </div>
+              </td>
+              <td class="col-md-3"><input class="form-control" type="text"></td>
+              <td class="col-md-2"><input class="form-control" type="text"></td>
+              <td class="col-md-7"><input class="form-control input-notes" type="text"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+<% end %>
+
 <%= link_to 'Edit', edit_worksheet_path(@worksheet) %> |
 <%= link_to 'Back', worksheets_path %>
+
+<script>
+console.log('start');
+  $('body').on('keydown','.input-notes', function(e) {
+    var keyCode = e.keyCode || e.which;
+    console.log('key');
+    if (keyCode == 9) {
+      console.log('tab');
+      $('#base-row').clone().removeAttr('id').appendTo($('#pricing-body').parent());
+    }
+  })
+</script>
